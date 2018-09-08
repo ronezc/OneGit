@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd" >
+<hibernate-configuration>
+	<session-factory>
+		<!-- 属性property标签必须在引用mapping标签前面 -->
+		
+		<!-- 数据库方言，hibernate识别不同数据库间的sql语法差异，可以不配置，根据数据库驱动识别 -->
+		
+		<!-- 配置数据源 -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/hibernate</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">123456</property>
+		
+		<!-- 开发阶段在控制台中打印sql语句 -->
+		<property name="show_sql">true</property>
+		<!-- 开发阶段格式化sql语句 -->
+		<property name="format_sql">true</property>
+		
+		<!-- 设置启动和停止时，数据库的自动创建，更新，删除模式 -->
+		<!-- 设置为create时，无论表是否存在，都创建（先删除原有的再创建新的）-->
+		<!-- 设置为update时，如果表存在则使用，不存在则创建 （最常用）-->
+		<!-- 设置为create-drop时，前面和create一样，只是关闭Session Factory时删除表，生成的是临时的表 -->
+		<!-- 设置为validate时，验证表实现是不是存在，不存在报错missing table[表名] -->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		
+		<!-- 设置此属性后，session调用delete方法后，会将被删除对象的主键设置为null -->
+		<property name="hibernate.use_identifier_rollback">true</property>
+		
+		<!-- 注册的xml，声明实体bean与表的对应 -->
+  		<mapping resource="com/zc/vo/Student.hbm.xml"/>
+		
+		
+		
+	</session-factory>
+</hibernate-configuration>

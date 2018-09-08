@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.zc.vo">
+
+	<!-- 
+		使用组件关联后，会将组件当中的属性，合并到外层关联的类中，
+		数据库中创建一张合并后的表 （组件可以加若干个）。
+		因为合并为数据库中一张表了，所以所有组件中和关联的类的属性，不可以有重复的
+		如果有一样的属性名，在*.hbm.xml中，需要使用property的column属性，给数据库表的列赋不同的名字
+	-->
+
+	<class name="Student">
+		<id name="id" type="long">
+			<generator class="native"></generator>
+		</id>
+		<property name="name"></property>
+		
+		<!-- 自定义的类的属性，放到component标签中，name为对应属性的get/set方法的属性名 -->
+		<component name="contact">
+			<property name="address"></property>
+			<property name="phone"></property>
+		</component>
+		
+	</class>
+
+</hibernate-mapping>
